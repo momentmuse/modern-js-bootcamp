@@ -1,4 +1,8 @@
-const todos = [{
+//Delete dummy data
+//Read and parse the data when the app starts up
+//Stringify and write data when new data is added
+
+let todos = [{
     text: 'Study Javascript',
     completed: false
 }, {
@@ -20,6 +24,16 @@ const todos = [{
 const inputFilters = {
     searchTodos: '',
     hideCompleted: false
+}
+
+//read from local storage
+//ok I guess it needs quotes? 
+//what's going on? why didn't it work last time?
+const todosJSON = localStorage.getItem('todos')
+
+//take our string and get back an array
+if (todosJSON !== null) {
+    todos = JSON.parse(todosJSON);
 }
 
 const renderTodos = function(todos, inputFilters) {
@@ -66,6 +80,8 @@ document.querySelector('#new-todo-form').addEventListener('submit', function(e) 
         text: e.target.elements.newTodoTextInput.value,
         completed: false
     });
+//create in local storage
+    localStorage.setItem('todos', JSON.stringify(todos));
     renderTodos(todos, inputFilters);
     e.target.elements.newTodoTextInput.value = '';
 });

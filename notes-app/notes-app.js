@@ -1,19 +1,26 @@
-const notes = [ {
-    title: 'My next trip',
-    body: 'I would like to go to Paris'
-}, {
-    title: 'Habits to work on',
-    body: 'Meditation. Eating a bit better.'
-}, {
-    title: 'Office modification',
-    body: 'Get a new chair'
-}]
+let notes = [];
+
+//everything is broken idk why
+//the course example .js file is even broken
+
 
 const inputFilters = {
     searchText: ''
 }
 
+//check for existing saved data
+//OMG ANDREW MEAD MADE AN ERROR HERE
+//I USED THE DEBUGGER AND TONS OF CONSOLE LOGS AND STACKOVERFLOW AND FIGURED IT OUT YAY I AM SO RESOURCEFUL
+//getItem(notes) should not have ('notes')!!!
+const notesJSON = localStorage.getItem(notes)
+
+if (notesJSON !== null) {
+    notes = JSON.parse(notesJSON);
+}
+
 const renderNotes = function (notes, inputFilters) {
+//error: notes.filter is not a function: because we're calling it on a string! why is notes = 'notes'? 
+//let's console log lines above ths, before the function is exectured to determine the value of notes and why it changes to a string
     const filteredNotes = notes.filter(function (note) {
         return note.title.toLowerCase().includes(inputFilters.searchText.toLowerCase());
     })
@@ -21,16 +28,27 @@ const renderNotes = function (notes, inputFilters) {
     document.querySelector('#notes').innerHTML = '';
 
     filteredNotes.forEach(function (note) {
-        const filteredNoteElement = document.createElement('p');
-        filteredNoteElement.textContent = note.title;
-        document.querySelector('#notes').appendChild(filteredNoteElement);
+        const noteElement = document.createElement('p');
+        
+        if (note.title.length > 0) {
+            noteElement.textContent = note.title
+        } else {
+            noteElement.textContent = 'Unnamed note'
+        }
+        
+        document.querySelector('#notes').appendChild(noteElement);
     })
 }
 
 renderNotes(notes, inputFilters);
 
 document.querySelector('#create-note-button').addEventListener('click', function(e) {
-    e.target.textContent = 'Button was clicked!';
+    notes.push({
+        title: '',
+        body: ''
+    })
+    localStorage.setItem('notes', JSON.stringify(notes))
+    renderNotes(notes, inputFilters)
 })
 
 document.querySelector('#search-text').addEventListener('input', function(e) {

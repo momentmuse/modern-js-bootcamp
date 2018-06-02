@@ -19,12 +19,22 @@ const saveNotes = function(notes) {
 //Generate the DOM structure for a note
 //argument note will be passed in from the notes-app.js file
 const generateNoteDOM = function (note) {
-    const noteElement = document.createElement('p');
-        if (note.title.length > 0) {
-            noteElement.textContent = note.title
-        } else {
-            noteElement.textContent = 'Unnamed note'
-        }
+    const noteElement = document.createElement('div');
+    const textElement = document.createElement('span')
+    const button = document.createElement('button');
+
+//Set up remove note button
+    button.textContent = 'x'
+    noteElement.appendChild(button)
+
+//Set up note title text
+    if (note.title.length > 0) {
+        textElement.textContent = note.title
+    } else {
+        textElement.textContent = 'Unnamed note'
+    }
+    noteElement.appendChild(textElement)
+
     return noteElement
 }
 

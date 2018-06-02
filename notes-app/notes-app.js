@@ -8,6 +8,7 @@ renderNotes(notes, inputFilters);
 
 document.querySelector('#create-note-button').addEventListener('click', function(e) {
     notes.push({
+        id: uuidv4(),
         title: '',
         body: ''
     })

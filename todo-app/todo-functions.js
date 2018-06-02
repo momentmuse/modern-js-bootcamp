@@ -41,9 +41,24 @@ const renderTodos = function(todos, inputFilters) {
 
 //Get the DOM elements for an individual note
 const generateTodoDOM = function(todo) {
-    const p = document.createElement('p');
-    p.textContent = todo.text;
-    return p;
+    const todoElement = document.createElement('div');
+    const checkbox = document.createElement('input');
+    const todoText = document.createElement('span');
+    const removeButton = document.createElement('button');
+
+//Set up todo checkbox
+    checkbox.setAttribute('type', 'checkbox');
+    todoElement.appendChild(checkbox);
+
+//Set up the todo text
+    todoText.textContent = todo.text;
+    todoElement.appendChild(todoText);
+
+//Set up the remove button
+    removeButton.textContent = 'x';
+    todoElement.appendChild(removeButton);
+
+    return todoElement;
 }
 
 //Get the DOM elements for list summary

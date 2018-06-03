@@ -30,7 +30,7 @@ const removeNote = function(id) {
 //argument note will be passed in from the notes-app.js file
 const generateNoteDOM = function (note) {
     const noteElement = document.createElement('div');
-    const textElement = document.createElement('span')
+    const textElement = document.createElement('a')
     const button = document.createElement('button');
 
 //Set up remove note button
@@ -48,6 +48,7 @@ const generateNoteDOM = function (note) {
     } else {
         textElement.textContent = 'Unnamed note'
     }
+    textElement.setAttribute('href', `/edit.html#${note.id}`)
     noteElement.appendChild(textElement)
 
     return noteElement

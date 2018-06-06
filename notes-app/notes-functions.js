@@ -54,8 +54,44 @@ const generateNoteDOM = function (note) {
     return noteElement
 }
 
+//Sort notes by one of three ways
+const sortNotes = function(notes, sortBy) {
+    if (sortBy === 'byEdited') {
+        return notes.sort(function(a, b) {
+            if (a.updatedAt > b.updatedAt) {
+                return -1;
+            } else if (a.updatedAt < b.updatedAt) {
+                return 1;
+            } else {
+                return 0
+            }
+        })
+    } else if (sortBy === 'byNew') {
+        return notes.sort(function(a, b) {
+            if (a.createdAt > b.createdAt) {
+                return -1;
+            } else if (a.createdAt < b.createdAt) {
+                return 1;
+            } else {
+                return 0;
+            }
+        })
+    } else if (sortBy === 'byAlpha') {
+        return notes.sort(function(a, b) {
+            if (a.title.toLowerCase() < b.title.toLowerCase()) {
+                return -1;
+            } else if (a.title.toLowerCase() > b.title.toLowerCase()) {
+                return 1;
+            } else {
+                return 0;
+            }
+        })
+    }
+}
+
 //Render application notes
 const renderNotes = function (notes, inputFilters) {
+    notes = sortNotes(notes, inputFilters.sortBy);
     const filteredNotes = notes.filter(function (note) {
         return note.title.toLowerCase().includes(inputFilters.searchText.toLowerCase());
     })

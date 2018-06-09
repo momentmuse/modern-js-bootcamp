@@ -1,10 +1,16 @@
 //Read existing notes from localStorage
 const getSavedNotes = () => {
     const notesJSON = localStorage.getItem('notes')
-//notes does not exist here, so change 'notes =' to return
-//if notesJSON does === null, return empty array
-    return notesJSON ? JSON.parse(notesJSON) : []
+
+    try {
+        //notes does not exist here, so change 'notes =' to return
+        //if notesJSON does === null, return empty array
+        return notesJSON ? JSON.parse(notesJSON) : []
+    } catch (e) {
+        return []
+    }
 }
+
 //Create notes to localStorage
 const saveNotes = (notes) => {
     localStorage.setItem('notes', JSON.stringify(notes))

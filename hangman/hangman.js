@@ -1,8 +1,15 @@
+// 1. Disable new guesses unless status = 'playing'
+// 2. Set up a new method to get back a status message 
+
+//Playing --> Guesses left: 5
+//Finished --> Great work! You guessed the word.
+//Failed --> Nice try! The word was 'pineapple'.
+ 
  const Answer = function (word, remainingGuesses) {
     this.word = word.toLowerCase().split('');
     this.remainingGuesses = remainingGuesses;
     this.guessedLetters = [];
-    this.status = '';
+    this.status = 'playing';
 }
 
 Answer.prototype.getGameStatus = function () {
@@ -24,15 +31,25 @@ Answer.prototype.getGameStatus = function () {
 //         }
 //     })
     
-    if (correct) {
-        this.status = 'finished';
-    } else if (this.remainingGuesses <= 0) {
+    if (this.remainingGuesses === 0) {
         this.status = 'failed';
+    } else if (correct) {
+        this.status = 'finished';
     } else {
         this.status = 'playing';
     }
 
     console.log(this.status)     
+}
+
+Answer.prototype.getStatusMessage = function() {
+    if (this.status === 'failed') {
+       return `Nice try! The answer was ${this.word.join('')}.`;
+    } else if (this.status === 'finished') {
+        return `Great job! You win!`;
+    } else if (this.status === 'playing') {
+        return `${game1.remainingGuesses} guesses left`;
+    }
 }
 
 Answer.prototype.getPuzzle = function () {
@@ -53,6 +70,11 @@ Answer.prototype.makeGuess = function (guess) {
     guess = guess.toLowerCase();
     const uniqueGuess = !this.guessedLetters.includes(guess);
     const badGuess = !this.word.includes(guess);
+//This wasn't the solution I was expecting. If the status on the new game object (see app.js to see answer constructor) is not equal to playing, simply return undefined, ie, short-circuit and skip all the code beneath it
+    if (this.status !== 'playing') {
+        return
+    }
+
     if (uniqueGuess) {
         this.guessedLetters.push(guess);
     }

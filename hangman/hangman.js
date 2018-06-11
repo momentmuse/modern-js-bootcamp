@@ -1,11 +1,4 @@
-// 1. Disable new guesses unless status = 'playing'
-// 2. Set up a new method to get back a status message 
-
-//Playing --> Guesses left: 5
-//Finished --> Great work! You guessed the word.
-//Failed --> Nice try! The word was 'pineapple'.
- 
- const Answer = function (word, remainingGuesses) {
+const Answer = function (word, remainingGuesses) {
     this.word = word.toLowerCase().split('');
     this.remainingGuesses = remainingGuesses;
     this.guessedLetters = [];

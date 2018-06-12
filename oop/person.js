@@ -63,7 +63,48 @@ class PersonClass {
     }
 }
 
+class Cat extends Person {
+    constructor(firstName, lastName, age, breed, likes) {
+//must include reference to super constructor arguments that you will take in
+//you cannot remove properties, only add new ones **i think** 
+        super(firstName, lastName, age, likes);
+        this.breed = breed;
+    }
+//getBio has been overwritten
+    getBio() {
+        let likesString = this.likes.join(", ");
+        return `Meow meow mmeeeowww mrroww! (I love ${likesString}!)`
+    }
+    getCatYears() {
+        return this.age * 6
+    }
+}
+
+class Student extends Person {
+    constructor(firstName, lastName, age, grade, likes) {
+        super(firstName, lastName, age, likes);
+        this.grade = grade;
+    }
+    getBio() {
+        return this.grade >= 70 ? `${this.firstName} is passing with ${this.grade}` : `${this.firstName} is failing with ${this.grade}`;
+    }
+    updateGrade(change) {
+        this.grade += change;
+    }
+}
+
 const aNewPerson = new PersonClass('Amy', 'Kirasack', 27, ['cats', 'computers']);
 console.log(aNewPerson.getBio());
-console.log(aNewPerson.setName('Eimi Kirasaku'));
+aNewPerson.setName('Eimi Kirasaku');
 console.log(aNewPerson.getBio());
+
+//order of arguments must align with extends constructor
+const aCat = new Cat('GatsGats', 'Fluffykins', 6, 'bicolor tabby', ['chicken', 'napping', 'belly rubs']);
+console.log(aCat);
+console.log(aCat.getBio());
+console.log(aCat.getCatYears());
+
+const aStudent = new Student('Pusheen', 'Een', 12, 67)
+console.log(aStudent.getBio());
+aStudent.updateGrade(20);
+console.log(aStudent.getBio());

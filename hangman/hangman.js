@@ -6,7 +6,9 @@ class Answer {
         this.status = 'playing';
     }
     getGameStatus() {
-        const correct = this.word.every((char) => this.guessedLetters.includes(char))
+        const correct = this.word.every((char) => this.guessedLetters.includes(char) || char === ' ')
+    //fixes logic bug if puzzle has a space in it
+
         if (this.remainingGuesses === 0) {
             this.status = 'failed';
         } else if (correct) {

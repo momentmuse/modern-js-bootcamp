@@ -16,7 +16,7 @@ class Answer {
         }
         console.log(this.status)     
     }
-    getStatusMessage() {
+    get statusMessage() {
         if (this.status === 'failed') {
             return `Nice try! The answer was ${this.word.join('')}.`;
          } else if (this.status === 'finished') {
@@ -25,7 +25,7 @@ class Answer {
              return `${game1.remainingGuesses} guesses left`;
          }
     }
-    getPuzzle() {
+    get puzzle() {
         let puzzle = [];
         this.word.forEach((letter) => {
             if (this.guessedLetters.includes(letter) || letter === ' ') {

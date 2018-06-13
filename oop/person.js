@@ -56,10 +56,14 @@ class PersonClass {
         });
         return bio;
     }
-    setName(fullName) {
+//insert a setter to directly manipulate property fullName
+    set fullName(fullName) {
         const names = fullName.split(' ');
         this.firstName = names[0];
         this.lastName = names[1];
+    }
+    get fullName() {
+        return `${this.firstName} ${this.lastName}`
     }
 }
 
@@ -73,7 +77,7 @@ class Cat extends Person {
 //getBio has been overwritten
     getBio() {
         let likesString = this.likes.join(", ");
-        return `Meow meow mmeeeowww mrroww! (I love ${likesString}!)`
+        return `Meow meow mmeeeowww mrroww! (${this.fullName} loves ${likesString}!)`
     }
     getCatYears() {
         return this.age * 6
@@ -95,16 +99,21 @@ class Student extends Person {
 
 const aNewPerson = new PersonClass('Amy', 'Kirasack', 27, ['cats', 'computers']);
 console.log(aNewPerson.getBio());
-aNewPerson.setName('Eimi Kirasaku');
+aNewPerson.fullName = 'Catsbee Meowmeow';
 console.log(aNewPerson.getBio());
 
 //order of arguments must align with extends constructor
 const aCat = new Cat('GatsGats', 'Fluffykins', 6, 'bicolor tabby', ['chicken', 'napping', 'belly rubs']);
 console.log(aCat);
+//the get fullName works, but firstName and lastName remain unchanged. Why?
+aCat.fullName = 'Catsbee Meowmeow';
 console.log(aCat.getBio());
+console.log(`firstName and lastName properties are set to: ${aCat.firstName} ${aCat.lastName}, but fullName is set to ${aCat.fullName}.`);
 console.log(aCat.getCatYears());
 
 const aStudent = new Student('Pusheen', 'Een', 12, 67)
 console.log(aStudent.getBio());
 aStudent.updateGrade(20);
+//this doesn't work in the extended class. why?
+aStudent.fullName = 'Catsbee Meowmeow';
 console.log(aStudent.getBio());

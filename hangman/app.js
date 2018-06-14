@@ -20,18 +20,14 @@ window.addEventListener('keypress', (e) => {
     guessesEl.textContent = game1.statusMessage;
 })
 
-getPuzzle((error, puzzle) => {
-    if (error) {
-        console.log(`Error: ${error}`);
-    } else {
-        console.log(puzzle);
-    }
-})
+getPuzzle('3').then((puzzle) => {
+    console.log(puzzle);
+}, (err) => {
+    console.log(`Error: ${err}`);
+});
 
-getCountry('CA', (error, country) => {
-    if (error) {
-        console.log(`Error: ${error}`);
-    } else {
-        console.log(`Country name is: ${country.name}`);
-    }
-})
+getCountry('JP').then((country) => {
+    console.log(`Country name is: ${country.name}`);
+}, (error) => {
+    console.log(`Error: ${error}`);
+});

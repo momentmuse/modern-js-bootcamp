@@ -17,12 +17,19 @@ getDataCallback((err, data) => {
 //Promise Example
 //call resolve to set return data
 //call reject to set error
-const myPromise = new Promise((resolve, reject) => {
+
+//shorthand syntax for a function that returns a promise (note that we removed return {})
+const getDataPromise = (data) => new Promise((resolve, reject) => {
     setTimeout(() => {
-        //resolve('This is the Promise data');
-        reject('This is my Promise ERROR!')
+        resolve(`This is the resolved Promise data: ${data}`);
+        // reject('This is my Promise ERROR!');
     }, 3000)
 });
+
+//by abstracting the function away into a new variable, it becomes more composable
+//you can pass in new arguments and use those arguments in the function itself
+const myPromise = getDataPromise(123);
+
 
 //what do do when we actually have the data
 //function is called when the Promise is resolved
@@ -33,5 +40,12 @@ myPromise.then((data) => {
 //needs more parameters for error case
     console.log(err);
 })
-//you cannot call your Promise more than once (can't reject then resolve, resolve twice, etc.)
+//you cannot resolve or reject or promise more than once in the same call
 //you don't have to know what you do with the code before you start the process of fetching the information
+
+//another call
+myPromise.then((data) => {
+    console.log(data);
+}, (err) => {
+    console.log(err);
+})

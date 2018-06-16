@@ -32,6 +32,12 @@ getCountry('JP').then((country) => {
     console.log(`We found an error: ${err}`);
 })
 
+getCurrentCountry().then((country) => {
+    console.log(`Async/await says you are in: ${country.name}`);
+}).catch((error) => {
+    console.log(error);
+})
+
 getLocation().then((location) => {
     console.log(`You are located in ${location.city}, ${location.region}, ${location.country}.`);
     return getCountry(location.country)

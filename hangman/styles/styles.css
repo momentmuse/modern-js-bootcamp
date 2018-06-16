@@ -1,0 +1,16 @@
+* {
+    font-family: Helvetica;
+}
+
+h1 {
+    color: sandybrown;
+}
+
+#puzzle {
+    color: plum;
+}
+
+button {
+    color: white;
+    background: pink;
+}

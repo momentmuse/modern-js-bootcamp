@@ -28,9 +28,9 @@ getPuzzle('3').then((puzzle) => {
 
 getCountry('JP').then((country) => {
     console.log(`Country name is: ${country.name}`);
-}, (error) => {
-    console.log(`Error: ${error}`);
-});
+}).catch((err) => {
+    console.log(`We found an error: ${err}`);
+})
 
 // fetch('http://puzzle.mead.io/puzzle', {}).then((response) => {
 //     if (response.status === 200) {

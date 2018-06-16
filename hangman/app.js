@@ -27,10 +27,20 @@ getPuzzle('3').then((puzzle) => {
 })
 
 getCountry('JP').then((country) => {
-    console.log(`Country name is: ${country.name}`);
+    console.log(`Input country name is: ${country.name}`);
 }).catch((err) => {
     console.log(`We found an error: ${err}`);
 })
+
+getLocation().then((location) => {
+    console.log(`You are located in ${location.city}, ${location.region}, ${location.country}.`);
+    return getCountry(location.country)
+}).then((country) => {
+    console.log(country.name)
+}).catch((error) => {
+    console.log(error);
+})
+
 
 // fetch('http://puzzle.mead.io/puzzle', {}).then((response) => {
 //     if (response.status === 200) {

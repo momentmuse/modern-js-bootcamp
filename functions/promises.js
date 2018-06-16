@@ -1,15 +1,27 @@
 //Callback Example
-const getDataCallback = (callback) => {
+const getDataCallback = (num, callback) => {
     setTimeout(() => {
-        callback(undefined, 'This is the callback data');
+        if (typeof num === 'number') {
+            callback(undefined, num*2)
+        } else {
+            callback('Number must be provided', undefined)
+        }
     }, 2000)
 };
 
-getDataCallback((err, data) => {
+getDataCallback(2, (err, data) => {
     if (err) {
-
+        console.log(err);
     } else {
-        console.log(data);
+//callback hell!! recursive callbacks?? nested...
+//omg I can't read this
+        getDataCallback(data, (err, data) => {
+            if (err) {
+                console.log('err');
+            } else {
+                console.log(data);
+            }
+        })
     }
 })
 //you might accidentally call your callback more than once
@@ -19,10 +31,9 @@ getDataCallback((err, data) => {
 //call reject to set error
 
 //shorthand syntax for a function that returns a promise (note that we removed return {})
-const getDataPromise = (data) => new Promise((resolve, reject) => {
+const getDataPromise = (num) => new Promise((resolve, reject) => {
     setTimeout(() => {
-        resolve(`This is the resolved Promise data: ${data}`);
-        // reject('This is my Promise ERROR!');
+       typeof num === 'number' ? resolve(num*2) : reject('Number must be provided')
     }, 3000)
 });
 
@@ -30,22 +41,27 @@ const getDataPromise = (data) => new Promise((resolve, reject) => {
 //you can pass in new arguments and use those arguments in the function itself
 const myPromise = getDataPromise(123);
 
-
-//what do do when we actually have the data
-//function is called when the Promise is resolved
-//this function ONLY fires when data resolves.
-myPromise.then((data) => {
-    console.log(data);
-}, (err) => {
-//needs more parameters for error case
-    console.log(err);
-})
-//you cannot resolve or reject or promise more than once in the same call
-//you don't have to know what you do with the code before you start the process of fetching the information
-
-//another call
-myPromise.then((data) => {
-    console.log(data);
+//promise nesting
+getDataPromise(2).then((data) => {
+    getDataPromise(data).then((data) => {
+        console.log(`The nested promise data is: ${data}`);
+    }, (err) => {
+        console.log(err);
+    })
 }, (err) => {
     console.log(err);
 })
+
+//first function will fire if Promise resolved, otherwise second function will fire
+//passing result of first call of getDataPromise into getDataPromise again, return resuling value and chain it
+getDataPromise(15).then((data) => {
+    return getDataPromise(data);
+}).then((data) => {
+    return getDataPromise(data);
+}).then((data) => {
+    console.log(`The promise chain data is: ${data}`);
+//use catch for Promise chaining
+}).catch((err) => {
+    console.log(err);
+})
+//code doesn't get more complex when you Promise chain, unlike callbacks or promise nesting

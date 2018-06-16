@@ -1,4 +1,3 @@
-//Async Await version
 const getPuzzle = async (wordCount) => {
     const response = await fetch(`http://puzzle.mead.io/puzzle?wordCount=${wordCount}`);
     if(response.status === 200) {
@@ -36,40 +35,3 @@ const getLocation = async () => {
             throw new Error('Unable to get location from IP')
         }
 }
-
-
-
-//Promise version
-// const getPuzzleOld = (wordCount) => {
-//     return fetch(`http://puzzle.mead.io/puzzle?wordCount=${wordCount}`).then((response) => {
-//         if (response.status === 200) {
-//             return response.json()
-//         } else {
-//             throw new Error('Unable to fetch puzzle');
-//         }
-//     }).then((data) => {
-//         return data.puzzle;
-//     })
-// }
-
-// const getCountryOld = (countryCode) => {
-//     return fetch('http://restcountries.eu/rest/v2/all').then((response) => {
-//         if (response.status === 200) {
-//             return response.json();
-//         } else {
-//             throw new Error('Unable to get country');
-//         }
-//     }).then((data) => {
-//         return country = data.find((country) => country.alpha2Code === countryCode);
-//     })
-// }
-
-// const getLocationOld = () => {
-//     return fetch('https://ipinfo.io/json?token=e1bb4a6a4526e5').then((response) => {
-//         if (response.status === 200) {
-//             return response.json();
-//         } else {
-//             throw new Error('Unable to get location from IP')
-//         }
-//     })
-// }

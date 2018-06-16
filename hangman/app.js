@@ -22,12 +22,24 @@ window.addEventListener('keypress', (e) => {
 
 getPuzzle('3').then((puzzle) => {
     console.log(puzzle);
-}, (err) => {
-    console.log(`Error: ${err}`);
-});
+}).catch((err) => {
+    console.log(err);
+})
 
 getCountry('JP').then((country) => {
     console.log(`Country name is: ${country.name}`);
 }, (error) => {
     console.log(`Error: ${error}`);
 });
+
+// fetch('http://puzzle.mead.io/puzzle', {}).then((response) => {
+//     if (response.status === 200) {
+//         return response.json();
+//     } else {
+//         throw new Error('Unable to fetch puzzle');
+//     }
+// }).then((data) => {
+//     console.log(data.puzzle);
+// }).catch((err) => {
+//     console.log(err);
+// })

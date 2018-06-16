@@ -7,9 +7,6 @@ const puzzleEl = document.querySelector('#puzzle');
 const guessesEl = document.querySelector('#guesses');
 let game1 = '';
 
-puzzleEl.textContent = game1.puzzle;
-guessesEl.textContent = game1.statusMessage;
-
 window.addEventListener('keypress', (e) => {
     const guess = String.fromCharCode(e.charCode);
     game1.makeGuess(guess);
@@ -17,13 +14,19 @@ window.addEventListener('keypress', (e) => {
 })
 
 const render = () => {
-    puzzleEl.textContent = game1.puzzle;
+    puzzleEl.innerHTML = '';
     guessesEl.textContent = game1.statusMessage;
+
+    game1.puzzle.split('').forEach((letter) => {
+        const letterEl = document.createElement('span');
+        letterEl.textContent = letter;
+        puzzleEl.appendChild(letterEl);
+    })
 }
 
 const startGame = async () => {
     const puzzle = await getPuzzle('3');
-    game1 = new Answer(puzzle, 8)
+    game1 = new Answer(puzzle, 6)
     render();
 }
 

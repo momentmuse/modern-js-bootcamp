@@ -8,9 +8,23 @@
     <link rel="stylesheet" type="text/css" media="screen" href="styles/styles.css" />
 </head>
     <body>
-        <a href="/index.html">Home</a>
+        <div class="header">
+            <div class="container">
+                <h1 class="header__title">Notes App</h1>
+                <h2 class="header__subtitle">Take notes and never forget</h2>
+            </div>
+        </div>
+
+        <div class="actions">
+            <div class="actions__container actions__container--spaced">
+                <a href="/index.html">Home</a>
+                <span id="last-edited"></span>
+            </div>
+        </div>
+
+
         <input id="note-title" placeholder="Note title" type="text">
-        <span id="last-edited"></span>
+
         <textarea name="" id="note-body" placeholder="Enter note text here" cols="30" rows="1"></textarea>
         <button id="remove-note">Remove note</button>
         

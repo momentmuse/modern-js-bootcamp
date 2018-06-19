@@ -15,15 +15,19 @@ document.querySelector('#filter-todos-text-input').addEventListener('input', (e)
 });
 
 document.querySelector('#new-todo-form').addEventListener('submit', (e) => {
+    const todoText = e.target.elements.newTodoTextInput.value.trim()
     e.preventDefault();
-    todos.push({
-        id: uuidv4(),
-        text: e.target.elements.newTodoTextInput.value,
-        completed: false
-    });
-    saveTodos(todos);
-    renderTodos(todos, inputFilters);
-    e.target.elements.newTodoTextInput.value = '';
+
+    if (todoText.length > 0) {
+        todos.push({
+            id: uuidv4(),
+            text: todoText,
+            completed: false
+        });
+        saveTodos(todos);
+        renderTodos(todos, inputFilters);
+        e.target.elements.newTodoTextInput.value = '';
+    }
 });
 
 document.querySelector('#hide-completed').addEventListener('change', (e) => {

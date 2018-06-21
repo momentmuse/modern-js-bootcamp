@@ -1,11 +1,8 @@
-const animal = 'cat';
-console.log(animal);
+import { add, name } from './utilities.js';
+import { yell } from './yell.js';
 
-class Hangman {
-    myMethod() {
-        return 'Class is logging';
-    }
-}
+console.log('index.js');
 
-const hangman = new Hangman();
-console.log(hangman.myMethod());
+console.log(add(12, 36));
+console.log(name);
+console.log(yell(`hey there ${name}`));

@@ -4,7 +4,7 @@
   "description": "",
   "main": "input.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "babel source/index.js --out-file public/scripts/bundle.js --presets env"
   },
   "author": "",
   "license": "ISC",

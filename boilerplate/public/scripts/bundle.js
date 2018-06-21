@@ -15,9 +15,12 @@ var Hangman = function () {
     _createClass(Hangman, [{
         key: 'myMethod',
         value: function myMethod() {
-            return 'Testing';
+            return 'Class is logging';
         }
     }]);
 
     return Hangman;
 }();
+
+var hangman = new Hangman();
+console.log(hangman.myMethod());

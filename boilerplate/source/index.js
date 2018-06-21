@@ -3,6 +3,9 @@ console.log(animal);
 
 class Hangman {
     myMethod() {
-        return 'Testing';
+        return 'Class is logging';
     }
 }
+
+const hangman = new Hangman();
+console.log(hangman.myMethod());

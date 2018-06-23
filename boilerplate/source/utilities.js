@@ -7,6 +7,7 @@ const add = (a, b) => a + b;
 const name = 'Amy';
 
 const square = (x) => x * x;
+console.log('from my code')
 
 //one line for all exports
 export { add, name, square as default };

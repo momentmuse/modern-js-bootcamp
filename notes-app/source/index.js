@@ -1,5 +1,3 @@
-import { getNotes, createNote } from './notes.js';
+import { getNotes, createNote, removeNote, updateNote } from './notes.js';
 
-console.log(getNotes());
-createNote();
 console.log(getNotes());

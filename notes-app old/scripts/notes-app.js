@@ -1,6 +1,6 @@
 'use strict'
 
-let notes = getSavedNotes()
+let notes = getSavedNotes();
 
 const inputFilters = {
     searchText: '',

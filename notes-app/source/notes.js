@@ -91,7 +91,7 @@ const updateNote = (id, updates) => {
         return;
     }
 
-    if (typeof updateNote.title === 'string') {
+    if (typeof updates.title === 'string') {
         note.title = updates.title;
         note.updateAt = moment().valueOf();
     }
@@ -107,4 +107,4 @@ const updateNote = (id, updates) => {
 
 notes = loadNotes();
 
-export { getNotes, createNote, removeNote, sortNotes };
+export { getNotes, createNote, removeNote, sortNotes, updateNote };

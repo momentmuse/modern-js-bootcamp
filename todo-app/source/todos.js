@@ -1,16 +1,31 @@
-// Setup the empty todos array
+import uuidv4 from 'uuid/v4';
 
-// loadTodos
-// Arguments: none
-// Return value: none
+let todos = [];
 
-// saveTodos
-// Arguments: none
-// Return value: none
+const loadTodos = () => {
+    const todosJSON = localStorage.getItem('todos');
 
-// getTodos
-// Arguments: none
-// Return value: todos array
+    try {
+        todos = todosJSON ? JSON.parse(todosJSON) : [];
+    } catch (e) {
+        todos = [];
+    }
+}
+
+const saveTodos = () => {
+    localStorage.setItem('todos', JSON.stringify(todos));
+}
+
+const getTodos = () => todos;
+
+const createTodo = (text) => {
+    todos.push({
+        id: uuidv4(),
+        text,
+        completed: false
+    })
+    saveTodos();
+}
 
 // createTodo
 // Arguments: todo text

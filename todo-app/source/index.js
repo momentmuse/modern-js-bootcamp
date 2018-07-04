@@ -14,3 +14,5 @@
 // Set up form submission handler
 
 // Bonus: Add a watcher for local storage
+
+import { getFilters, setFilters } from './filters';

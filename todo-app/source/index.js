@@ -1,6 +1,6 @@
 import { renderTodos } from './views';
 import { setFilters } from './filters';
-import { createTodo } from './todos';
+import { createTodo, loadTodos } from './todos';
 
 renderTodos();
 
@@ -30,3 +30,10 @@ document.querySelector('#hide-completed').addEventListener('change', (e) => {
     //if checkbox is unchecked, hideCompleted = false; display all (todo.completed && !todo.completed; all true)
     renderTodos();
 });
+
+window.addEventListener('storage', (e) => {
+    if (e.key === 'todos') {
+        loadTodos();
+        renderTodos();
+    }
+})

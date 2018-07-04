@@ -27,16 +27,23 @@ const createTodo = (text) => {
     saveTodos();
 }
 
-// createTodo
-// Arguments: todo text
-// Return value: none
+const removeTodo = (id) => {
+    const todoIndex = todos.findIndex((todo) => todo.id === id);
 
-// removeTodo
-// Arguments: id of todo to remove
-// Return value: none
+    if (todoIndex > -1) {
+        todos.splice(todoIndex, 1);
+        saveTodos();
+    }
+}
 
-// toggleTodo
-// Arguments: id of todo to toggle
-// Return value: none
+const toggleTodo = (id) => {
+    const todo = todos.find((todo) => todo.id === id)
+    if (todo) {
+        todo.completed = !todo.completed
+        saveTodos();
+    }
+}
 
-// Make sure to call loadTodos and setup the exports
+loadTodos()
+
+export { getTodos, createTodo, removeTodo, toggleTodo };

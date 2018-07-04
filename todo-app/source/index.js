@@ -15,4 +15,4 @@
 
 // Bonus: Add a watcher for local storage
 
-import { getFilters, setFilters } from './filters';
+import { getTodos, createTodo, removeTodo, toggleTodo } from '.todos';

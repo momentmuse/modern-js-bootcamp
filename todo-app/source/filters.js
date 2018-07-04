@@ -6,8 +6,8 @@ const filters = {
 const getFilters = () => filters;
 
 const setFilters = (updates) => {
-    if (typeof updates.searchText === 'string') {
-        filters.searchText = updates.searchText;
+    if (typeof updates.searchTodos === 'string') {
+        filters.searchTodos = updates.searchTodos;
     }
     if (typeof updates.hideCompleted === 'boolean') {
         filters.hideCompleted = updates.hideCompleted;

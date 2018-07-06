@@ -48,7 +48,7 @@ class Answer {
         }
     
         if (uniqueGuess) {
-            this.guessedLetters.push(guess);
+            this.guessedLetters = [...this.guessedLetters, guess];
         }
     
         if (uniqueGuess && badGuess) {

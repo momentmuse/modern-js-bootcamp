@@ -37,3 +37,37 @@ citiesSpreadCopy.push('Tokyo');
 
 //another way to add stuff
 const citiesSpreadCopy2 = [...cities, 'Tokyo'] //just like .push()
+
+
+//the Object SPREAD order!
+let house = {
+    bedrooms: 3,
+    bathrooms: 2.5,
+    yearBuilt: 2017
+}
+
+let newHouse = {
+    basement: true,
+    ...house,
+    bedrooms: 4
+}
+
+console.log(house);
+console.log(newHouse)
+
+let person = {
+    name: 'Amy',
+    age: 27
+}
+
+let location = {
+    city: 'Ottawa',
+    country: 'Canada'
+}
+
+let overview = {
+    ...person,
+    ...location
+}
+
+console.log(overview)

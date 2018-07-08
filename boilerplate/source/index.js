@@ -71,3 +71,27 @@ let overview = {
 }
 
 console.log(overview)
+
+//Destructuring! Mostly with Objects
+
+const todo = {
+    id: 'asbjkl3849020394',
+    text: 'Pay the bills',
+    completed: false
+}
+
+//create new variable name from text property
+    //look for text on todo object, create const todoText from it
+//pull out completed property from object
+//create variable with default value
+//you can also use the Rest operator! 
+    //will create new object with undestructured properties
+
+const { text:todoText, completed, details = 'No details found', ...otherProperties } = todo
+
+const age = [73, 34, 22, 50, 12]
+
+//destructure the array
+//you can skip values too
+//you can also set default values and rest parameter (will store non=destructured items)
+const [firstAge, secondAge, thirdAge, , fifthAge, sixthAge = 27] = age

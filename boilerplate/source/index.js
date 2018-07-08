@@ -80,6 +80,13 @@ const todo = {
     completed: false
 }
 
+//use destructuring in function arguments so you don't have to pass the entire object through
+const printTodo = ({ text, completed }) => {
+    console.log(`${text}: ${completed}`);
+}
+
+printTodo(todo)
+
 //create new variable name from text property
     //look for text on todo object, create const todoText from it
 //pull out completed property from object

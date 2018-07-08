@@ -1,16 +1,16 @@
 const filters = {
-    searchText: '',
+    searchTodos: '',
     hideCompleted: false
 }
 
 const getFilters = () => filters;
 
-const setFilters = (updates) => {
-    if (typeof updates.searchTodos === 'string') {
-        filters.searchTodos = updates.searchTodos;
+const setFilters = ({ searchTodos, hideCompleted }) => {
+    if (typeof searchTodos === 'string') {
+        filters.searchTodos = searchTodos;
     }
-    if (typeof updates.hideCompleted === 'boolean') {
-        filters.hideCompleted = updates.hideCompleted;
+    if (typeof hideCompleted === 'boolean') {
+        filters.hideCompleted = hideCompleted;
     }
 }
 
